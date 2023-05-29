@@ -138,7 +138,7 @@ class CafeCardWidget extends StatelessWidget {
           Row(
             children: [
               AppText(
-                startingAt,
+                'Starting at ₹120',
                 style: th.labelMedium?.copyWith(fontWeight: FontWeight.w500),
                 textColor: appColorBlack,
               ),

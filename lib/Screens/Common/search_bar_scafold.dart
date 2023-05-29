@@ -4,9 +4,9 @@ import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 
 
-class SearchBar extends StatelessWidget {
+class SearchappBar extends StatelessWidget {
   final Widget child;
-  const SearchBar({Key? key, required this.child}) : super(key: key);
+  const SearchappBar({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

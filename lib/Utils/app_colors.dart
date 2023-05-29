@@ -10,6 +10,7 @@ const Color appColorBlack = Color(0xFF000000);
 
 const Color buttonbg = Color(0xFF000000);
 const Color submitbtn = Color(0xFF832A0E);
+const Color border = Color(0x99832A0E);
 
 const Color cafedetail = Color(0xFF1A264E);
 const Color reviewdetail = Color(0xFF212121);
@@ -38,8 +39,9 @@ const Color inputBorderColor = Color(0xFFF4F6F8);
 const Color inputLabelColor = Color(0xFF95A0AC);
 const Color inputFontColor = Color(0xFF110A3F);
 const Color inputIconColor = appColorBlack;
-
-
+//socialmedia
+const Color scborder = Color(0xFFEDF5F9);
+const Color scbg = Color(0xFFffffff);
 
 //cafecard
 const Color cafecardgray = Color(0xFFB6B7BA);

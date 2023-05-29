@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:page_indicator/page_indicator.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:untitled1/Screens/Common/base_app_scafold.dart';
 import 'package:untitled1/Screens/Common/slider.dart';
@@ -18,15 +17,16 @@ import '../../CustomWidgets/foodimagecard.dart';
 import '../../CustomWidgets/orderrating.dart';
 import '../../Utils/app_colors.dart';
 import '../../Utils/helper.dart';
+import '../Common/search_bar_scafold.dart';
 import '../cafe/cafecard.dart';
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class foodMenu extends StatefulWidget {
+  const foodMenu({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<foodMenu> createState() => _foodMenu();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _foodMenu extends State<foodMenu> {
   late PageController controller;
 
   GlobalKey<PageContainerState> key = GlobalKey();
@@ -49,13 +49,43 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
 
-    return BaseAppScaffold(
-
+    return SearchappBar(
       child: SingleChildScrollView(
         child: Column(
-
           children: [
-            SliderInd(),
+            CafeCardTilesWidget(
+              imagePath: 'assets/cafe/cafecard.png',
+              text: 'Delhi Heights, Chanakyapuri – Try The Best Of Delhi',
+            ),
+
+            Card(
+              elevation: 0,
+              color: appColorWhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.zero, // Set border radius to zero
+              ),
+              child: Container(
+                height: 77,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 6,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        Helper.horizontalSpacing(),
+                        Helper.horizontalSpacing(),
+                        Helper.horizontalSpacing(),
+                        HorizontalContainerWidget(
+                          imagePath: 'assets/container/food.png',
+                          text: 'Pizza',
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ),
+
             MyOrder(),
             /*foodimagecard(
               image1: SvgPicture.asset('assets/addfood/veg.svg'),
@@ -240,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
               ),
             ),
-            
+
             Card(
               elevation: 0,
               color: appColorWhite,
@@ -263,21 +293,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     Helper.verticalSpacing(),
                     Helper.verticalSpacing(),
                     ListView.builder(
-                     // scrollDirection: Axis.vertical,
+                      // scrollDirection: Axis.vertical,
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 6,
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
-                                PersistentNavBarNavigator.pushNewScreen(
+                                Navigator.push(
                                   context,
-                                  screen: cafeDetsails(),
-                                  withNavBar: false,
-                                  pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
+                                  MaterialPageRoute(
+                                    fullscreenDialog: true, // Set fullscreenDialog to true
+                                    builder: (context) => cafeDetsails(),
+                                  ),
                                 );
                               },
                               child: CafeCardWidget(
