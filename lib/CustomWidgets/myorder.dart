@@ -12,8 +12,11 @@ import 'app_text_button.dart';
 import 'custom_button_widget.dart';
 
 class MyOrder extends StatefulWidget {
-  const MyOrder({Key? key}) : super(key: key);
-
+  final String? status;
+  final VoidCallback? onpressed;
+  const MyOrder({this.status,this.onpressed,Key? key}) : super(key: key);
+  const MyOrder.ordered({this.status='My Orders',this.onpressed,Key? key}): super(key: key);
+  const MyOrder.cart({this.status='My Cart',this.onpressed,Key? key}): super(key: key);
   @override
   State<MyOrder> createState() => _MyOrder();
 }
@@ -53,7 +56,7 @@ class _MyOrder extends State<MyOrder> {
                   onTap: () =>
                   {
                   }, // or omit the onTap parameter
-                  title: 'My order',
+                  title: widget.status,
                 )
               ],
             ),
