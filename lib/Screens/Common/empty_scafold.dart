@@ -33,9 +33,8 @@ class EmptyScafold extends StatelessWidget {
                     child: Center(
                       child:Row(
                         children: [
-
-                          AppText("Your Order ",style: th.bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.w700),
+                          AppText("Your Order ",style: th.bodySmall
+                              ?.copyWith(fontWeight: FontWeight.w600),
                             textColor: reviewdetail,),
                           AppText(title!,style: th.bodySmall
                               ?.copyWith(fontWeight: FontWeight.w500),

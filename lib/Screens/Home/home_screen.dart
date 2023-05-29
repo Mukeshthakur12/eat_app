@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:page_indicator/page_indicator.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:untitled1/Screens/Common/base_app_scafold.dart';
 import 'package:untitled1/Screens/Common/slider.dart';
@@ -17,6 +18,7 @@ import '../../CustomWidgets/foodimagecard.dart';
 import '../../CustomWidgets/orderrating.dart';
 import '../../Utils/app_colors.dart';
 import '../../Utils/helper.dart';
+import '../cafe/cafecard.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -55,6 +57,57 @@ class _HomeScreenState extends State<HomeScreen> {
                 SliderInd(),
                 SizedBox(height: 5,),
                 // MyOrder(),
+                /*foodimagecard(
+              image1: SvgPicture.asset('assets/addfood/veg.svg'),
+              image2: SvgPicture.asset('assets/addfood/star.svg'),
+              count: '2',
+              title: 'Panjabi Combo',
+              description:
+              'Butter Khulcha+Aloo Stuffed Khulcha+Panner Stuffed Kulcha+Panner Butter Masala+Dal Makhani+Boondi Raita+Laccha Pyaz+Papad',
+              price: '₹160',
+            ),
+            foodCard(
+              image1: SvgPicture.asset('assets/addfood/veg.svg'),
+              image2: SvgPicture.asset('assets/addfood/star.svg'),
+              count: '2',
+              title: 'Panjabi Combo',
+              description:
+              'Butter Khulcha+Aloo Stuffed Khulcha+Panner Stuffed Kulcha+Panner Butter Masala+Dal Makhani+Boondi Raita+Laccha Pyaz+Papad',
+              price: '₹160',
+            ),*/
+
+                /*CafeCardWidget(
+              imagePath: 'assets/Offer/promo_img.jpg',
+              location: 'Delhi Heights, Chanakyapuri – Try The Best Of Delhi',
+              status: 'Now open',
+              closesAt: 'Closes at 11:00pm',
+              startingAt: 'Starting at ₹120',
+              time: '30-45 Min',
+              distance: '2km',
+            ),*/
+
+                /*VerticalContainerWidget(
+              imagePath: 'assets/container/food.png',
+              text: 'Veg Pulav',
+            ),
+
+            HorizontalContainerWidget(
+              imagePath: 'assets/container/food.png',
+              text: 'Pizza',
+            ),*/
+                /*
+            CafeCardTilesWidget(
+              imagePath: 'assets/cafe/cafecard.png',
+              text: 'Delhi Heights, Chanakyapuri – Try The Best Of Delhi',
+            ),*/
+                /*
+            alertSnackbar(
+              text: 'QR Code is not active',
+            ),*/
+                /*FirstImageWidget(
+              imagePath: 'assets/cafe/cafecard.png',
+              text: 'Panjabi Combo',
+            ),*/
                 Card(
                   elevation: 0,
                   color: appColorWhite,
@@ -217,14 +270,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
-                                CafeCardWidget(
-                                  imagePath: 'assets/Offer/promo_img.jpg',
-                                  location: 'Delhi Heights, Chanakyapuri – Try The Best Of Delhi',
-                                  status: 'Now open',
-                                  closesAt: 'Closes at 11:00pm',
-                                  startingAt: 'Starting at ₹120',
-                                  time: '30-45 Min',
-                                  distance: '2km',
+                                InkWell(
+                                  onTap: () {
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: cafeDetsails(),
+                                      withNavBar: false,
+                                      pageTransitionAnimation:
+                                      PageTransitionAnimation.cupertino,
+                                    );
+                                  },
+                                  child: CafeCardWidget(
+                                    imagePath: 'assets/Offer/promo_img.jpg',
+                                    location: 'Delhi Heights, Chanakyapuri – Try The Best Of Delhi',
+                                    status: 'Now open',
+                                    closesAt: 'Closes at 11:00pm',
+                                    startingAt: 'Starting at ₹120',
+                                    time: '30-45 Min',
+                                    distance: '2km',
+                                  ),
                                 ),
                                 Divider(
                                   height: 1,

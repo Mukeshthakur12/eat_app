@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled1/Screens/Order/current_order.dart';
 
 import 'Screens/Home/home_screen.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
 
       theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xffF8F8F8),
           useMaterial3: true,
           textTheme: TextTheme(
           displayLarge: GoogleFonts.sora(),
@@ -127,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      HomeScreen(),
+      CurrentOrder(),
       HomeScreen(),
       HomeScreen(),
     ];
