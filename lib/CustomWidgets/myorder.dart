@@ -53,9 +53,7 @@ class _MyOrder extends State<MyOrder> {
                   borderColor: Colors.transparent,
                   fontColor: appColorWhite,
                   //padding:8.0,
-                  onTap: () =>
-                  {
-                  }, // or omit the onTap parameter
+                  onTap: () =>widget.onpressed, // or omit the onTap parameter
                   title: widget.status,
                 )
               ],
