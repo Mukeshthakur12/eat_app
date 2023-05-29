@@ -18,19 +18,22 @@ class OrderBook extends StatelessWidget {
   const OrderBook(
       this.uname, { required this.itmsize, required this.itminfo,required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Cooking',
-        this.iconlink='assets/Offer/cooking.svg',this.color_b=status_cooking,
+        this.iconlink='assets/Offer/cooking.svg',
+        this.color_b=status_cooking,
         Key? key
       }) : super(key: key);
   const OrderBook.ordered(
       this.uname, { required this.itmsize,required this.itminfo, required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Ordered',
-        this.iconlink='assets/Offer/oredered.svg',this.color_b=successColor,
+        this.iconlink='assets/Offer/oredered.svg',
+        this.color_b=successColor,
         Key? key
       }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
     return Card(
+      elevation: 0,
         child:AppPadding.a2(
           child: Column(
             children: [
@@ -88,8 +91,16 @@ class OrderBook extends StatelessWidget {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Row(
+                    children: [
+                      AppText("Instructions",style: th.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w400,
+                      ),textColor: inputLabelColor,),
+                      Icon(Icons.keyboard_arrow_right,size:14,color: inputLabelColor,)
+                    ],
+                  ),
                   Container(
                     padding: EdgeInsets.all(4),
                     decoration: BoxDecoration(

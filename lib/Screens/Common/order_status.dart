@@ -30,6 +30,7 @@ class OrderStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
     return Card(
+      elevation: 0,
         child:AppPadding.a2(
           child: Column(
             children: [
