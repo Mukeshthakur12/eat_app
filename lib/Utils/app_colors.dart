@@ -14,6 +14,7 @@ const Color border = Color(0x99832A0E);
 
 const Color cafedetail = Color(0xFF1A264E);
 const Color reviewdetail = Color(0xFF212121);
+const Color btndisable = Color(0xFFC19587);
 const Color username = Color(0xFF0B0B0C);
 const Color userrating = Color(0xFF3E3D3D);
 const Color bordersearch = Color(0xFFE7E7E7);

@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'Screens/Home/home_screen.dart';
+import 'Screens/Order/current_order.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,37 +60,34 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<PersistentBottomNavBarItem> _navBarItems() {
     return [
+
       PersistentBottomNavBarItem(
         icon: Icon(Icons.home),
-        // title: 'Home',
-        activeColorPrimary: Colors.blue,
+        title: 'Home',
+        activeColorPrimary: Color(0xff832A0E),
+        activeColorSecondary: Color(0xff832A0E),
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.home),
-        // title: 'Home',
-        activeColorPrimary: Colors.blue,
+        icon: Icon(Icons.search),
+        title: 'Search',
+        activeColorPrimary: Color(0xff832A0E),
+        activeColorSecondary: Color(0xff832A0E),
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person),
-        // title: 'Home',
-        activeColorPrimary: Colors.blue,
-        iconSize:60,
+        icon: Icon(CupertinoIcons.doc_plaintext),
+        title: 'Document',
+        activeColorPrimary: Color(0xff832A0E),
+        activeColorSecondary: Color(0xff832A0E),
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.settings),
-        // title: 'Search',
-        activeColorPrimary: Colors.blue,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.notifications),
-        // title: 'Profile',
-        activeColorPrimary: Colors.blue,
-        inactiveColorPrimary: Colors.grey,
-      ),
+        title: 'Setting',
+        activeColorPrimary: Color(0xff832A0E),
+        activeColorSecondary: Color(0xff832A0E),
+        inactiveColorPrimary: Colors.grey,      ),
     ];
   }
   PersistentTabController _controller = PersistentTabController(initialIndex: 0);
@@ -108,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
         stateManagement: true,
         // hideNavigationBarWhenKeyboardShows: true,
         decoration: NavBarDecoration(
-          borderRadius: BorderRadius.circular(30.0),
+          // borderRadius: BorderRadius.circular(30.0),
           colorBehindNavBar: Colors.white,
         ),
 
@@ -129,8 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      HomeScreen(),
-      HomeScreen(),
+      CurrentOrder(),
       HomeScreen(),
       HomeScreen(),
     ];
