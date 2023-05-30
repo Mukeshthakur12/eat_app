@@ -5,6 +5,7 @@ import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled1/Screens/Order/current_order.dart';
 import 'package:untitled1/Screens/Order/order_sent.dart';
+import 'package:untitled1/Screens/Order/served_order.dart';
 
 import 'Screens/Home/home_screen.dart';
 
@@ -130,9 +131,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
-      CurrentOrder(),
       OrderSent(),
-      HomeScreen(),
+      CurrentOrder(),
+      OrderServed(),
     ];
   }
 }

@@ -59,17 +59,44 @@ class MenuIteamNoImage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 4,),
-                        GestureDetector(
-                          onTap: onpressed,
-                          child: Row(
-                            children: [
-                              Icon(Icons.add,size: 14,color: successColor,),
-                              SizedBox(width: 5,),
-                              AppText('Add Instruction',style: th.bodySmall?.copyWith
-                                (fontWeight: FontWeight.w600),
-                                textColor:successColor ,),
-                            ],
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: onpressed,
+                              child: Row(
+                                children: [
+                                  Icon(Icons.add,size: 14,color: successColor,),
+                                  SizedBox(width: 5,),
+                                  AppText('Add Instruction',style: th.bodySmall?.copyWith
+                                    (fontWeight: FontWeight.w600),
+                                    textColor:successColor ,),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  color: appbtnbg,
+                                  border: Border.all(
+                                    color: border,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6)
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                      onTap: onpressed,
+                                      child: Icon(Icons.remove_rounded,size: 12,color: appPrimaryColor,)),
+                                  AppText("1",style: th.bodySmall?.copyWith(
+                                      fontWeight: FontWeight.w600
+                                  ),textColor: appPrimaryColor,),
+                                  Icon(Icons.add,size: 12,color: appPrimaryColor,),
+                                ],
+                              ),
+                            ),
+                          ],
                         )
 
                       ],

@@ -26,6 +26,13 @@ class OrderStatus extends StatelessWidget {
         this.iconlink='assets/Offer/oredered.svg',this.color_b=successColor,
         Key? key
       }) : super(key: key);
+  const OrderStatus.served(
+      this.uname, { required this.itmsize,required this.itmcount,
+        required this.itmprice,this.onpressed,this.status='Served',
+        this.iconlink='assets/Offer/served.svg',
+        this.color_b=serveddcolor,
+        Key? key
+      }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
