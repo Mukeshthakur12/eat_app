@@ -11,8 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
 
 import 'package:untitled1/Screens/Common/empty_scafold.dart';
+import 'package:untitled1/Screens/Common/instruction_popup.dart';
 import 'package:untitled1/Screens/Common/menu_iteam_card.dart';
 import 'package:untitled1/Screens/Order/order_sent.dart';
+import 'package:untitled1/Screens/Order/order_with_instruction.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 import 'package:untitled1/Utils/helper.dart';
 
@@ -35,7 +37,7 @@ class CurrentOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
     return  EmptyScafold(
-      title: "(#220723-01233-00020-01)",
+      title: "Your order (#220723-01233-00020-01)",
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -59,11 +61,11 @@ class CurrentOrder extends StatelessWidget {
                ),
                MenuIteam("Panjabi Combo", uimage:'assets/Offer/menu_item.png',itmsize: "Regular (Serve 1, 17.7 CM)",
                    itminfo: "Pepperoni • Extra cheese • Black olives",
-                   itmcount: "2x", itmprice: "₹160",
+                   itmcount: "2x", itmprice: "₹160",isinst: false,
                  onpressed: ()=>myFunction(context),),
                MenuIteam("Panjabi Combo", uimage:'assets/Offer/menu_item.png',itmsize: "Regular (Serve 1, 17.7 CM)",
                    itminfo: "Pepperoni • Extra cheese • Black olives",
-                   itmcount: "2x", itmprice: "₹160",
+                   itmcount: "2x", itmprice: "₹160",isinst: false,
                  onpressed: ()=>myFunction(context),),
                MenuIteamNoImage("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
                    // itminfo: "Pepperoni • Extra cheese • Black olives",
@@ -223,10 +225,19 @@ class CurrentOrder extends StatelessWidget {
            alignment: Alignment.bottomLeft,
            child: Container(
              height: 400,
-             child: AddPopUp(type: true,),
+             child: AddPopUp(onPressed:()=>gotoinstructionpage(context) ,),
            ),
          );
        },
+     );
+   }
+   void gotoinstructionpage(BuildContext context) {
+     PersistentNavBarNavigator.pushNewScreen(
+       context,
+       screen: OrderWithInstruction(),
+       withNavBar: false,
+       pageTransitionAnimation:
+       PageTransitionAnimation.cupertino,
      );
    }
 }

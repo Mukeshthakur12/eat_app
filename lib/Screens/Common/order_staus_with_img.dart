@@ -4,8 +4,9 @@ import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:untitled1/CustomWidgets/apppadding.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 
-class OrderBook extends StatefulWidget {
+class OrderStatusWithImg extends StatefulWidget {
   final String uname;
+  final String uimage;
   final String itmsize;
   final String itminfo;
   final String itmcount;
@@ -16,39 +17,39 @@ class OrderBook extends StatefulWidget {
   final VoidCallback ? onpressed;
   final VoidCallback ? ontooltippress;
 
-  const OrderBook(
-      this.uname, { required this.itmsize, required this.itminfo,
+  const OrderStatusWithImg(
+      this.uname, {required this.uimage,required this.itmsize, required this.itminfo,
         required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Cooking',
         this.iconlink='assets/Offer/cooking.svg',
         this.color_b=status_cooking,this.ontooltippress,
         Key? key
       }) : super(key: key);
-  const OrderBook.ordered(
-      this.uname, { required this.itmsize,required this.itminfo, required this.itmcount,
+  const OrderStatusWithImg.ordered(
+      this.uname, {required this.uimage, required this.itmsize,required this.itminfo, required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Ordered',
         this.iconlink='assets/Offer/oredered.svg',
         this.color_b=successColor,this.ontooltippress,
         Key? key
       }) : super(key: key);
-  const OrderBook.served(
-      this.uname, { required this.itmsize,required this.itminfo, required this.itmcount,
+  const OrderStatusWithImg.served(
+      this.uname, {required this.uimage, required this.itmsize,required this.itminfo, required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Served',
         this.iconlink='assets/Offer/served.svg',
         this.color_b=serveddcolor,this.ontooltippress,
         Key? key
       }) : super(key: key);
   @override
-  State<OrderBook> createState() => _OrderBook();
+  State<OrderStatusWithImg> createState() => _OrderStatusWithImg();
 }
 
-class _OrderBook extends State<OrderBook> {
+class _OrderStatusWithImg extends State<OrderStatusWithImg> {
   bool showtext=false;
   @override
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
     return Card(
-      elevation: 0,
+        elevation: 0,
         child:AppPadding.a2(
           child: Column(
             children: [
@@ -56,7 +57,17 @@ class _OrderBook extends State<OrderBook> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 42,
+                      width: 52,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: Image.asset(widget.uimage),
+                    ),
+                  ),
                   // SizedBox(width: 8,),
                   Expanded(
                     flex: 5,
@@ -98,9 +109,9 @@ class _OrderBook extends State<OrderBook> {
                     child: GestureDetector(
                       onTap: (){
                         if(showtext!=true){
-                        setState(() {
-                          showtext=true;
-                        });}
+                          setState(() {
+                            showtext=true;
+                          });}
                         else{
                           setState(() {
                             showtext=false;

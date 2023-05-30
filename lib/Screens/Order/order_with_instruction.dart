@@ -1,17 +1,21 @@
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
-import 'package:untitled1/CustomWidgets/order_book_succes_popup.dart';
 import 'package:untitled1/Screens/Common/add_instruction_popup.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:untitled1/CustomWidgets/app_text.dart';
+
 import 'package:untitled1/Screens/Common/empty_scafold.dart';
 import 'package:untitled1/Screens/Common/menu_iteam_card.dart';
-import 'package:untitled1/Screens/Common/order_book.dart';
-import 'package:untitled1/Screens/Common/order_status.dart';
-import 'package:untitled1/Screens/Order/Review/order_review.dart';
+import 'package:untitled1/Screens/Order/order_sent.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 import 'package:untitled1/Utils/helper.dart';
+
 import 'package:untitled1/apppadding.dart';
 
 import '../../CustomWidgets/cafedetails.dart';
@@ -20,8 +24,13 @@ import '../Common/instruction_popup.dart';
 import '../Common/menu_iteam_card_noimg.dart';
 import '../food/foodmenu.dart';
 
-class OrderServed extends StatelessWidget {
-  OrderServed({Key? key}) : super(key: key);
+
+import '../../CustomWidgets/cafedetails.dart';
+import '../Common/menu_iteam_card_noimg.dart';
+
+class OrderWithInstruction extends StatelessWidget {
+  OrderWithInstruction({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,46 +49,31 @@ class OrderServed extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        children: [
-                          Icon(Icons.shop,size:20,color: appPrimaryColor,),
-                          Helper.horizontalSpacing(10),
-                          AppText("Table - 01233-00020",style: th.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w700
-                          ),textColor: appPrimaryColor,),
-                        ],
-                      ),
-                      InkWell(
-                        child: Row(
-                          children: [
-                            Icon(Icons.refresh,color: successColor,size: 16,),
-                            AppText("Update Status",style: th.bodySmall?.copyWith(
-                                fontWeight: FontWeight.w600
-                            ),textColor: successColor,
-                            ),
-                          ],
-                        ),
-                      ),
-
-
+                      Helper.horizontalSpacing(16),
+                      Icon(Icons.shop,size:20,color: appPrimaryColor,),
+                      Helper.horizontalSpacing(10),
+                      AppText("Table - 01233-00020",style: th.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w700
+                      ),textColor: appPrimaryColor,),
                     ],
                   ),
-                  OrderStatus.served("Panjabi Combo",itmsize: "Regular (Serve 1, 17.7 CM)",
-                    itmcount: "2x", itmprice: "₹160",
-                    onpressed: ()=>myFunction(context),),
-                  OrderStatus.served("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
-                    itmcount: "2x", itmprice: "₹160",
-                    onpressed: ()=>myFunction(context),),
-                  OrderBook.served("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                  MenuIteam.withInstruction("Panjabi Combo", uimage:'assets/Offer/menu_item.png',itmsize: "Regular (Serve 1, 17.7 CM)",
                     itminfo: "Pepperoni • Extra cheese • Black olives",
+                    itmcount: "2x", itmprice: "₹160",isinst: true,
+                    onpressed: ()=>myFunction1(context),),
+                  MenuIteam("Panjabi Combo", uimage:'assets/Offer/menu_item.png',itmsize: "Regular (Serve 1, 17.7 CM)",
+                    itminfo: "Pepperoni • Extra cheese • Black olives",
+                    itmcount: "2x", itmprice: "₹160",isinst: false,
+                    onpressed: ()=>myFunction(context),),
+                  MenuIteamNoImage("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                    // itminfo: "Pepperoni • Extra cheese • Black olives",
                     itmcount: "2x", itmprice: "₹160"
                     ,onpressed: ()=>myFunction(context),),
-                  OrderBook.served("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
-                    itminfo: "Pepperoni • Extra cheese • Black olives",
-                    itmcount: "2x", itmprice: "₹160",
-                    onpressed: ()=>myFunction(context),),
+                  MenuIteamNoImage("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                    // itminfo: "Pepperoni • Extra cheese • Black olives",
+                    itmcount: "2x", itmprice: "₹160",onpressed: ()=>
+                        myFunction(context),),
                 ],
               ),
             ),
@@ -175,62 +169,38 @@ class OrderServed extends StatelessWidget {
                     child: CustomButtonWidget(
                       height:52 ,
                       // width:176,
-                      disabledColor: btndisable,
                       fontSize: 12,
                       padding: EdgeInsets.all(4.0),
                       backgroundColor: submitbtn,
+                      borderColor: border.withOpacity(0.6),
                       fontColor: appColorWhite,
-                      // borderWidth: 5,
+                      borderWidth: 5,
                       //padding:8.0,
-                      // onTap: null,
-                      onTap: () {
-                        showDialog(context: context,
-                            builder: (BuildContext context){
-                              return Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Container(
-                                  height: 320,
-                                  child: OrderBookPopUp(onPressed:
-                                      (){
-                                    PersistentNavBarNavigator.pushNewScreen(
-                                      context,
-                                      screen: OrderReview(),
-                                      withNavBar: false,
-                                      pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                    );
-                                  },),
-                                ),
-                              );
-                            }
-                        );
+                      onTap: () =>
+                      {
+                        PersistentNavBarNavigator.pushNewScreen(
+                          context,
+                          screen: OrderSent(),
+                          withNavBar: false,
+                          pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                        )
                       },
                       child: Center(
                         child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
-                                flex: 1,
-                                child: Icon(Icons.shopping_bag,size: 24,color: Colors.white,)),
-                            Expanded(
-                              flex: 2,
-                              child: AppText("₹120000",style: th.bodyLarge?.copyWith(
-                                  fontWeight: FontWeight.w700
-                              ),textColor: Colors.white,),
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Expanded(
-                                flex: 3,
-                                child: Row(
-                                  children: [
-                                    AppText("Complete Order",style: th.bodyMedium?.copyWith(
-                                        fontWeight: FontWeight.w500
-                                    ),textColor: Colors.white,),
-                                    Icon(Icons.keyboard_arrow_right_outlined,size: 12,color: Colors.white,),
-                                  ],
-                                ),
-                              ),
+                            Icon(Icons.shopping_bag,size: 24,color: Colors.white,),
+                            AppText("₹120000",style: th.bodyLarge?.copyWith(
+                                fontWeight: FontWeight.w700
+                            ),textColor: Colors.white,),
+                            Row(
+                              children: [
+                                AppText("Complete Order",style: th.bodyMedium?.copyWith(
+                                    fontWeight: FontWeight.w500
+                                ),textColor: Colors.white,),
+                                Icon(Icons.keyboard_arrow_right_outlined,size: 12,color: Colors.white,),
+                              ],
                             )
                           ],
                         ),
@@ -243,11 +213,25 @@ class OrderServed extends StatelessWidget {
             )
           ],
         ),
-      ),
 
+      ),
     );
   }
   void myFunction(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.bottomLeft,
+          child: Container(
+            height: 400,
+            child: AddPopUp(),
+          ),
+        );
+      },
+    );
+  }
+  void myFunction1(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

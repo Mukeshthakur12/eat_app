@@ -7,8 +7,7 @@ import 'package:untitled1/Utils/app_colors.dart';
 
 class AddPopUp extends StatefulWidget {
   final VoidCallback ? onPressed;
-  final bool type;
-  const AddPopUp({ this.onPressed,required this.type,
+  const AddPopUp({ this.onPressed,
         Key? key
       }) : super(key: key);
   @override
@@ -39,7 +38,7 @@ class _AddPopUp extends State<AddPopUp> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      widget.type ? Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           AppText("Add Instruction",style: th.bodyLarge?.copyWith(
@@ -51,15 +50,15 @@ class _AddPopUp extends State<AddPopUp> {
                               },
                               child: Icon(Icons.cancel_outlined))
                         ],
-                      ):SizedBox.shrink(),
+                      ),
                       SizedBox(height: 5,),
-                      widget.type?Container(
+                      Container(
                         width: 400,
                         height: 1,
                         color: Color(0xffEDF5F9),
-                      ):SizedBox.shrink(),
-                      widget.type?SizedBox(height: 16):SizedBox.shrink(),
-                      widget.type?Row(
+                      ),
+                      SizedBox(height: 16),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
@@ -132,24 +131,11 @@ class _AddPopUp extends State<AddPopUp> {
                             ),
                           ),
                         ],
-                      ):SizedBox.shrink(),
-                      widget.type?SizedBox(height: 16):SizedBox.shrink(),
-                      widget.type?AppText("Enter Instructions",style: th.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w500
-                      ),textColor: reviewdetail,):
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AppText("Instructions",style: th.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w500
-                          ),textColor: reviewdetail,),
-                          InkWell(
-                              onTap: (){
-                                Navigator.of(context).pop();
-                              },
-                              child: Icon(Icons.cancel_outlined)),
-                        ],
                       ),
+                      SizedBox(height: 16),
+                      AppText("Enter Instructions",style: th.bodySmall?.copyWith(
+                        fontWeight: FontWeight.w500
+                      ),textColor: reviewdetail,),
                       SizedBox(height: 10),
                       Container(
                         // padding: EdgeInsets.symmetric( vertical: 8),
@@ -167,7 +153,7 @@ class _AddPopUp extends State<AddPopUp> {
                               maxLines: 5,
                               maxLength: 100,
                               decoration: InputDecoration(
-                                hintText: 'Enter your feedback',
+                                hintText: 'Enter here',
                                 border: InputBorder.none,
 
                                 contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),

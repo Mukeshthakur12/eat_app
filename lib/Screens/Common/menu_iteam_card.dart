@@ -13,6 +13,9 @@ class MenuIteam extends StatelessWidget {
   final String itminfo;
   final String itmcount;
   final String itmprice;
+  final String ? instruction;
+  final bool isinst;
+  final Color ? instructionclr;
   final VoidCallback ? onpressed;
   final VoidCallback ? ontooltippress;
 
@@ -20,6 +23,14 @@ class MenuIteam extends StatelessWidget {
       this.uname, { this.uimage,required this.itmsize,
         required this.itminfo,required this.itmcount,
         required this.itmprice,this.onpressed,this.ontooltippress,
+        this.instruction='Add Instruction',this.instructionclr=successColor,required this.isinst,
+        Key? key
+      }) : super(key: key);
+  const MenuIteam.withInstruction(
+      this.uname, { this.uimage,required this.itmsize,
+        required this.itminfo,required this.itmcount,
+        required this.itmprice,this.onpressed,this.ontooltippress,
+        this.instruction='Instruction',this.instructionclr=inputLabelColor,required this.isinst,
         Key? key
       }) : super(key: key);
 
@@ -85,11 +96,14 @@ class MenuIteam extends StatelessWidget {
                                   onTap: onpressed,
                                   child: Row(
                                     children: [
-                                      Icon(Icons.add,size: 14,color: successColor,),
+                                      isinst?SizedBox.shrink():Icon(Icons.add,
+                                        size: 14,color: successColor,),
                                       SizedBox(width: 5,),
-                                      AppText('Add Instruction',style: th.bodySmall?.copyWith
+                                      AppText(instruction!,style: th.bodySmall?.copyWith
                                         (fontWeight: FontWeight.w600),
-                                      textColor:successColor ,),
+                                      textColor:instructionclr,),
+                                      isinst?Icon(Icons.keyboard_arrow_right_outlined,size: 14,
+                                        color: textLabelColor,):SizedBox.shrink(),
                                     ],
                                   ),
                                 ),

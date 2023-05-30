@@ -5,9 +5,11 @@ import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:untitled1/Screens/Common/add_instruction_popup.dart';
 import 'package:untitled1/Screens/Common/empty_scafold.dart';
+import 'package:untitled1/Screens/Common/instruction_popup.dart';
 import 'package:untitled1/Screens/Common/menu_iteam_card.dart';
 import 'package:untitled1/Screens/Common/order_book.dart';
 import 'package:untitled1/Screens/Common/order_status.dart';
+import 'package:untitled1/Screens/Common/order_staus_with_img.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 import 'package:untitled1/Utils/helper.dart';
 import 'package:untitled1/apppadding.dart';
@@ -24,7 +26,7 @@ class OrderSent extends StatelessWidget {
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
     return  EmptyScafold(
-      title: "(#220723-01233-00020-01)",
+      title: "Your order (#220723-01233-00020-01)",
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -63,9 +65,9 @@ class OrderSent extends StatelessWidget {
 
                     ],
                   ),
-                  OrderStatus("Panjabi Combo",itmsize: "Regular (Serve 1, 17.7 CM)",
+                  OrderStatusWithImg("Panjabi Combo",itmsize: "Regular (Serve 1, 17.7 CM)",
                     itmcount: "2x", itmprice: "₹160",
-                    onpressed: ()=>myFunction(context),),
+                    onpressed: ()=>myFunction(context), uimage: 'assets/container/food.png', itminfo: 'Pepperoni • Extra cheese • Black olives',),
                   OrderStatus.ordered("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
                     itmcount: "2x", itmprice: "₹160",
                     onpressed: ()=>myFunction(context),),
@@ -217,8 +219,8 @@ class OrderSent extends StatelessWidget {
         return Align(
           alignment: Alignment.bottomLeft,
           child: Container(
-            height: 320,
-            child: AddPopUp(type: false,),
+            height: 200,
+            child: InstructionPopup(),
           ),
         );
       },
