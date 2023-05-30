@@ -78,87 +78,104 @@ class _myCartPopup extends State<myCartPopup> {
                         thickness: 1,
                         color: Color(0xffF1F1F1),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText("Customisation",style: th.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                            textColor: reviewdetail,),
-                          ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: 8,
-                            itemBuilder: (context, index) {
-                              return Row(
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: 8,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Row(
                                 children: [
-                                  Radio<bool>(
-                                    value: true,
-                                    groupValue: false,
-                                    fillColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
-                                      if (states.contains(MaterialState.selected)) {
-                                        return appPrimaryColor; // Fill color when selected
-                                      }
-                                      return textLabelColor; // Fill color when not selected
-                                    }),                              onChanged: (bool? value) {
-                                    // Add your logic here
-                                  },
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        AppText("Customisation",style: th.bodyLarge?.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                          textColor: reviewdetail,),
+                                        Helper.verticalSpacing(),
+                                        Container(
+                                          height: 35,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: 6,
+                                            itemBuilder: (context, index) {
+                                              return Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  InkWell(
+                                                    onTap: (){
+
+                                                    },
+                                                    child: Container(
+                                                      height: 25,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(8),
+                                                        color: appColorGrey,
+                                                      ),
+
+                                                      child: Center(
+                                                        child: AppPadding.a(
+                                                          child: Row(
+                                                            children: [
+                                                              Helper.horizontalSpacing(),
+                                                              AppText("More Spice",style: th.bodySmall?.copyWith(
+                                                                  fontSize: 10,fontWeight: FontWeight.w500
+                                                              ),textColor: reviewdetail,),
+                                                              Helper.horizontalSpacing(),
+                                                              Icon(Icons.close,size: 12,),
+                                                              Helper.horizontalSpacing(),
+
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Helper.horizontalSpacing(),
+                                                ],
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Helper.horizontalSpacing(),
+                                  Helper.horizontalSpacing(),
+
+                                  Container(
+                                    width: 65,
+                                    decoration: BoxDecoration(
+                                        color: containerbg,
+                                        border: Border.all(
+                                          color: border,
+                                        ),
+                                        borderRadius: BorderRadius.circular(6)
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        InkWell(
+                                            child: Icon(Icons.remove_rounded,size: 12,color: appPrimaryColor,)),
+                                        AppText("1",style: th.bodySmall?.copyWith(
+                                            fontWeight: FontWeight.w600
+                                        ),textColor: appPrimaryColor,),
+                                        Icon(Icons.add,size: 12,color: appPrimaryColor,),
+                                      ],
+                                    ),
                                   ),
 
-                                  Expanded(
-                                    child: AppText("Item $index",style: th.labelMedium?.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                      textColor: appColorBlack,),
-                                  ),
-                                  AppText("₹20",style: th.labelMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                    textColor: appColorBlack,),
                                 ],
-                              );
-                            },
-                          ),
-                          AppText("Addons",style: th.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
-                          ),
-                            textColor: reviewdetail,),
-                          ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: 3,
-                            itemBuilder: (context, index) {
-                              return Row(
-                                children: [
-                                  Checkbox(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4.0),
-                                    ),
-                                    fillColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
-                                      if (states.contains(MaterialState.selected)) {
-                                        return appPrimaryColor; // Fill color when selected
-                                      }
-                                      return textLabelColor; // Fill color when not selected
-                                    }),
-                                    value: false,
-                                    onChanged: (bool? value) {
-                                    },
-                                  ),
-                                  Expanded(
-                                    child: AppText("Item $index",style: th.labelMedium?.copyWith(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                      textColor: appColorBlack,),
-                                  ),
-                                  AppText("₹20",style: th.labelMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                    textColor: appColorBlack,),
-                                ],
-                              );
-                            },
-                          ),
-                        ],
+                              ),
+                              Helper.verticalSpacing(),
+                              Helper.verticalSpacing(),
+
+                            ],
+                          );
+                        },
                       ),
                       SizedBox(height:42),
                       // SizedBox(height: 12,),
