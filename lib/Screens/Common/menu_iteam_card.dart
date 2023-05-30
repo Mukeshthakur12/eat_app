@@ -14,11 +14,12 @@ class MenuIteam extends StatelessWidget {
   final String itmcount;
   final String itmprice;
   final VoidCallback ? onpressed;
+  final VoidCallback ? ontooltippress;
 
   const MenuIteam(
       this.uname, { this.uimage,required this.itmsize,
         required this.itminfo,required this.itmcount,
-        required this.itmprice,this.onpressed,
+        required this.itmprice,this.onpressed,this.ontooltippress,
         Key? key
       }) : super(key: key);
 
@@ -123,7 +124,7 @@ class MenuIteam extends StatelessWidget {
                       ),
                   Container(
                     child: GestureDetector(
-                      onTap: onpressed,
+                      onTap: ontooltippress,
                       child: Container(
                         child: Icon(Icons.info_outline,size: 13,),
                       ),

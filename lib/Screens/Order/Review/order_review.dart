@@ -17,12 +17,20 @@ import 'package:untitled1/apppadding.dart';
 
 import '../../../CustomWidgets/cafedetails.dart';
 import '../../../CustomWidgets/custom_button_widget.dart';
+import '../../food/foodmenu.dart';
 
 
 
-class OrderReview extends StatelessWidget {
+class OrderReview extends StatefulWidget {
   OrderReview({Key? key}) : super(key: key);
+  @override
+  State<OrderReview> createState() => _OrderReview();
+}
+
+class _OrderReview extends State<OrderReview> {
   TextEditingController _textEditingController = TextEditingController();
+  late String text;
+  bool isbtn= false;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +90,8 @@ class OrderReview extends StatelessWidget {
                   ),
                 ),
               ),
+              Helper.verticalSpacing(),
+              Helper.verticalSpacing(),
               Container(
                 color: containercolor,
                 child: AppPadding.a2(
@@ -105,6 +115,12 @@ class OrderReview extends StatelessWidget {
                           children: [
                             TextField(
                               controller: _textEditingController,
+                              onChanged: (_){
+                                setState(() {
+                                  isbtn=true;
+                                  text=_textEditingController.text;
+                                });
+                               },
                               maxLines: 5,
                               maxLength: 100,
                               decoration: InputDecoration(
@@ -118,39 +134,65 @@ class OrderReview extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 12,),
-                      InkWell(
-                        onTap: (){
 
-                        },
-                        child: Container(
-                          height: 49,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(170),
-                            color: submitbtn,
-                          ),
-                          // padding: EdgeInsets.only(left: 8,right: 8),
-                          child: AppPadding.a2(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AppText("Submit",style: th.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w700
-                                ),textColor: Colors.white,),
-                                Icon(CupertinoIcons.arrow_right,size: 24,color: Colors.white,),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
-              )
+              ),
+              Helper.verticalSpacing(),
+              Helper.verticalSpacing(),
+              Container(
+                color: containercolor,
+                child: AppPadding.x2(
+                  child: CustomButtonWidget(
+                    height:52 ,
+                    // width:176,
+                    fontSize: 12,
+                    padding: EdgeInsets.all(4.0),
+                    backgroundColor: submitbtn,
+                    borderColor: border.withOpacity(0.6),
+                    fontColor: appColorWhite,
+                    // borderWidth: 5,
+                    //padding:8.0,
+                    onTap: isbtn?() =>
+                    {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: foodMenu(),
+                        withNavBar: false,
+                        pageTransitionAnimation:
+                        PageTransitionAnimation.cupertino,
+                      )
+                    }:null,
+                    child: AppPadding.a2(
+                      child:  Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText("Submit",style: th.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.w700
+                          ),textColor: Colors.white,),
+                          Icon(CupertinoIcons.arrow_right,size: 24,color: Colors.white,),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Helper.verticalSpacing(),
+              Helper.verticalSpacing(),
             ],
           ),
       ),
 
     );
+  }
+  void myfun(BuildContext context){
+      PersistentNavBarNavigator.pushNewScreen(
+        context,
+        screen: foodMenu(),
+        withNavBar: false,
+        pageTransitionAnimation:
+        PageTransitionAnimation.cupertino,
+      );
   }
 }

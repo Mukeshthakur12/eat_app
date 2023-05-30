@@ -4,7 +4,7 @@ import 'package:untitled1/CustomWidgets/app_text.dart';
 import 'package:untitled1/CustomWidgets/apppadding.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 
-class OrderBook extends StatelessWidget {
+class OrderBook extends StatefulWidget {
   final String uname;
   final String itmsize;
   final String itminfo;
@@ -14,28 +14,35 @@ class OrderBook extends StatelessWidget {
   final String ? iconlink;
   final Color ? color_b;
   final VoidCallback ? onpressed;
+  final VoidCallback ? ontooltippress;
 
   const OrderBook(
       this.uname, { required this.itmsize, required this.itminfo,required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Cooking',
         this.iconlink='assets/Offer/cooking.svg',
-        this.color_b=status_cooking,
+        this.color_b=status_cooking,this.ontooltippress,
         Key? key
       }) : super(key: key);
   const OrderBook.ordered(
       this.uname, { required this.itmsize,required this.itminfo, required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Ordered',
         this.iconlink='assets/Offer/oredered.svg',
-        this.color_b=successColor,
+        this.color_b=successColor,this.ontooltippress,
         Key? key
       }) : super(key: key);
   const OrderBook.served(
       this.uname, { required this.itmsize,required this.itminfo, required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Served',
         this.iconlink='assets/Offer/served.svg',
-        this.color_b=serveddcolor,
+        this.color_b=serveddcolor,this.ontooltippress,
         Key? key
       }) : super(key: key);
+  @override
+  State<OrderBook> createState() => _OrderBook();
+}
+
+class _OrderBook extends State<OrderBook> {
+  bool showtext=false;
   @override
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
@@ -62,21 +69,21 @@ class OrderBook extends StatelessWidget {
                               width: 11,
                             ),
                             SizedBox(width: 5,),
-                            AppText(uname,style: th.bodyMedium?.copyWith
+                            AppText(widget.uname,style: th.bodyMedium?.copyWith
                               (fontWeight: FontWeight.w700),textColor: username,),
                           ],
                         ),
-                        AppText(itmsize,style: th.bodySmall?.copyWith
+                        AppText(widget.itmsize,style: th.bodySmall?.copyWith
                           (fontWeight: FontWeight.w500),textColor: reviewdetail,),
-                        AppText(itminfo,style: th.bodySmall?.copyWith(
+                        AppText(widget.itminfo,style: th.bodySmall?.copyWith(
                           fontWeight: FontWeight.w400,
                         ),textColor: textLabelColor,),
                         Row(
                           children: [
-                            AppText(itmcount,style: th.bodySmall?.copyWith
+                            AppText(widget.itmcount,style: th.bodySmall?.copyWith
                               (fontWeight: FontWeight.w400),textColor: textLabelColor,),
                             SizedBox(width: 5,),
-                            AppText(itmprice,style: th.bodySmall?.copyWith
+                            AppText(widget.itmprice,style: th.bodySmall?.copyWith
                               (fontWeight: FontWeight.w500),textColor: reviewdetail,),
                           ],
                         ),
@@ -84,9 +91,22 @@ class OrderBook extends StatelessWidget {
                       ],
                     ),
                   ),
+                  showtext?AppText("#220723-01233-01 ",style: th.bodySmall?.copyWith(
+                      fontSize:10),):SizedBox.shrink(),
                   Container(
                     child: GestureDetector(
-                      onTap: onpressed,
+                      onTap: (){
+                        if(showtext!=true){
+                        setState(() {
+                          showtext=true;
+                        });}
+                        else{
+                          setState(() {
+                            showtext=false;
+                          });
+                        }
+
+                      },
                       child: Container(
                         child: Icon(Icons.info_outline,size: 13,),
                       ),
@@ -100,13 +120,19 @@ class OrderBook extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      AppText("Instructions",style: th.bodySmall?.copyWith(
-                        fontWeight: FontWeight.w400,
-                      ),textColor: inputLabelColor,),
-                      Icon(Icons.keyboard_arrow_right,size:14,color: inputLabelColor,)
-                    ],
+                  GestureDetector(
+                    onTap: widget.onpressed,
+                    child: Row(
+                      children: [
+
+                        AppText('Instruction',style: th.bodySmall?.copyWith
+                          (fontWeight: FontWeight.w400),
+                          textColor:textLabelColor ,),
+                        // SizedBox(width: 5,),
+                        Icon(Icons.keyboard_arrow_right_outlined,size: 14,
+                          color: textLabelColor,),
+                      ],
+                    ),
                   ),
                   Container(
                     padding: EdgeInsets.all(4),
@@ -114,14 +140,14 @@ class OrderBook extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4),
                         color: status_cooking_bg,
                         border: Border.all(
-                          color: color_b!,
+                          color: widget.color_b!,
                         )
                     ),
                     child: Row(
                       children: [
-                        SvgPicture.asset(iconlink!),
+                        SvgPicture.asset(widget.iconlink!),
                         SizedBox(width: 3,),
-                        AppText(status!,style: th.labelSmall,textColor: color_b!,),
+                        AppText(widget.status!,style: th.labelSmall,textColor: widget.color_b!,),
                       ],
                     ),
                   )

@@ -12,6 +12,7 @@ import 'package:untitled1/CustomWidgets/app_text.dart';
 
 import 'package:untitled1/Screens/Common/empty_scafold.dart';
 import 'package:untitled1/Screens/Common/menu_iteam_card.dart';
+import 'package:untitled1/Screens/Order/order_sent.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 import 'package:untitled1/Utils/helper.dart';
 
@@ -177,7 +178,7 @@ class CurrentOrder extends StatelessWidget {
                         {
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
-                            screen: foodMenu(),
+                            screen: OrderSent(),
                             withNavBar: false,
                             pageTransitionAnimation:
                             PageTransitionAnimation.cupertino,
@@ -193,7 +194,7 @@ class CurrentOrder extends StatelessWidget {
                               ),textColor: Colors.white,),
                               Row(
                                 children: [
-                                  AppText("Send Order to Kitchen",style: th.bodyMedium?.copyWith(
+                                  AppText("Complete Order",style: th.bodyMedium?.copyWith(
                                       fontWeight: FontWeight.w500
                                   ),textColor: Colors.white,),
                                   Icon(Icons.keyboard_arrow_right_outlined,size: 12,color: Colors.white,),
