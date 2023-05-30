@@ -9,17 +9,17 @@ import 'package:untitled1/Utils/app_colors.dart';
 import '../../Utils/helper.dart';
 import '../food/foodmenuwithcart.dart';
 
-class MenuPopup extends StatefulWidget {
+class myCartPopup extends StatefulWidget {
   final VoidCallback ? onPressed;
   final bool type;
-  const MenuPopup({ this.onPressed,required this.type,
+  const myCartPopup({ this.onPressed,required this.type,
     Key? key
   }) : super(key: key);
   @override
-  _MenuPopup createState() => _MenuPopup();
+  _myCartPopup createState() => _myCartPopup();
 }
 
-class _MenuPopup extends State<MenuPopup> {
+class _myCartPopup extends State<myCartPopup> {
   bool isChecked = false;
   late String type;
   late String instruction;
@@ -101,8 +101,8 @@ class _MenuPopup extends State<MenuPopup> {
                                       }
                                       return textLabelColor; // Fill color when not selected
                                     }),                              onChanged: (bool? value) {
-                                      // Add your logic here
-                                    },
+                                    // Add your logic here
+                                  },
                                   ),
 
                                   Expanded(
@@ -148,7 +148,7 @@ class _MenuPopup extends State<MenuPopup> {
                                     child: AppText("Item $index",style: th.labelMedium?.copyWith(
                                       fontWeight: FontWeight.w500,
                                     ),
-                                    textColor: appColorBlack,),
+                                      textColor: appColorBlack,),
                                   ),
                                   AppText("₹20",style: th.labelMedium?.copyWith(
                                     fontWeight: FontWeight.w600,
@@ -212,7 +212,7 @@ class _MenuPopup extends State<MenuPopup> {
                     ),
                   ),
                 ),
-              ),
+                ),
               )
             ],
           ),
