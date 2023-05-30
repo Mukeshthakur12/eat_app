@@ -7,7 +7,8 @@ import 'package:untitled1/Utils/app_colors.dart';
 
 class AddPopUp extends StatefulWidget {
   final VoidCallback ? onPressed;
-  const AddPopUp({ this.onPressed,
+  final bool type;
+  const AddPopUp({ this.onPressed,required this.type,
         Key? key
       }) : super(key: key);
   @override
@@ -15,8 +16,10 @@ class AddPopUp extends StatefulWidget {
 }
 
 class _AddPopUp extends State<AddPopUp> {
+  late String type;
+  late String instruction;
   TextEditingController _textEditingController = TextEditingController();
-
+  TextEditingController _textEditingController1 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var th = Theme.of(context).textTheme;
@@ -35,38 +38,47 @@ class _AddPopUp extends State<AddPopUp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    widget.type ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppText("Add Instruction",style: th.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),textColor: reviewdetail,),
-                        Icon(Icons.cancel_outlined)
+                        InkWell(
+                            onTap: (){
+                              Navigator.of(context).pop();
+                            },
+                            child: Icon(Icons.cancel_outlined))
                       ],
-                    ),
+                    ):SizedBox.shrink(),
                     SizedBox(height: 5,),
-                    Container(
+                    widget.type?Container(
                       width: 400,
                       height: 1,
                       color: Color(0xffEDF5F9),
-                    ),
-                    SizedBox(height: 16),
-                    Row(
+                    ):SizedBox.shrink(),
+                    widget.type?SizedBox(height: 16):SizedBox.shrink(),
+                    widget.type?Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Container(
-                            height: 20,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: appColorGrey,
-                            ),
+                          child: InkWell(
+                            onTap: (){
 
-                            child: Center(
-                              child: AppText("More Spice",style: th.bodySmall?.copyWith(
-                                fontSize: 8,fontWeight: FontWeight.w500
-                              ),textColor: reviewdetail,),
+                            },
+                            child: Container(
+                              height: 20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: appColorGrey,
+                              ),
+
+                              child: Center(
+                                child: AppText("More Spice",style: th.bodySmall?.copyWith(
+                                  fontSize: 8,fontWeight: FontWeight.w500
+                                ),textColor: reviewdetail,),
+                              ),
                             ),
                           ),
                         ),
@@ -119,8 +131,8 @@ class _AddPopUp extends State<AddPopUp> {
                           ),
                         ),
                       ],
-                    ),
-                    SizedBox(height: 16),
+                    ):SizedBox.shrink(),
+                    widget.type?SizedBox(height: 16):SizedBox.shrink(),
                     AppText("Enter Instructions",style: th.bodySmall?.copyWith(
                       fontWeight: FontWeight.w500
                     ),textColor: reviewdetail,),
