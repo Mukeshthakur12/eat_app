@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
+
+import '../Scanner/qr_scanner.dart';
 
 
 class BaseAppScaffold extends StatelessWidget {
@@ -50,9 +53,20 @@ class BaseAppScaffold extends StatelessWidget {
                         ),
                         Expanded(
                             flex: 1,
-                            child: SvgPicture.
-                            asset('assets/AppBar/qr_logo.svg',
-                              height: 46,width: 46,)),
+                            child: InkWell(
+                              onTap: (){
+                                PersistentNavBarNavigator.pushNewScreen(
+                                  context,
+                                  screen: ScanQR(),
+                                  withNavBar: false,
+                                  pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                                );
+                              },
+                              child: SvgPicture.
+                              asset('assets/AppBar/qr_logo.svg',
+                                height: 46,width: 46,),
+                            )),
                         Expanded(
                             flex: 1,
                             child: Icon(Icons.person,size: 46,)),

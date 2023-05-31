@@ -6,6 +6,7 @@ const defaultBorderRadius = 8.0;
 const Color appPrimaryColor = Color(0xFF832A0E);
 const Color appWhiteShade = Color(0xFFF6F6F6);
 const Color appColorWhite = Color(0xFFFFFFFF);
+const Color containercolor = Color(0xFFFFFFFF);
 const Color appColorBlack = Color(0xFF000000);
 
 const Color buttonbg = Color(0xFF000000);
@@ -23,6 +24,9 @@ const Color successColor = Color(0xFF01A879);
 const Color status_cooking = Color(0xFFF9CA26);
 const Color status_cooking_bg = Color(0xFFFFF5EA);
 const Color appColorGrey = Color(0xFFEEEEEE);
+const Color appbtnbg = Color(0xFFFFEDF1);
+const Color serveddcolor = Color(0xFF44C4FD);
+const Color itemline = Color(0xFFF1F1F1);
 
 
 

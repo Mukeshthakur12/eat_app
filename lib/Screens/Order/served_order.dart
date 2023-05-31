@@ -3,24 +3,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:untitled1/CustomWidgets/app_text.dart';
+import 'package:untitled1/CustomWidgets/order_book_succes_popup.dart';
 import 'package:untitled1/Screens/Common/add_instruction_popup.dart';
 import 'package:untitled1/Screens/Common/empty_scafold.dart';
-import 'package:untitled1/Screens/Common/instruction_popup.dart';
 import 'package:untitled1/Screens/Common/menu_iteam_card.dart';
 import 'package:untitled1/Screens/Common/order_book.dart';
 import 'package:untitled1/Screens/Common/order_status.dart';
-import 'package:untitled1/Screens/Common/order_staus_with_img.dart';
+import 'package:untitled1/Screens/Order/Review/order_review.dart';
 import 'package:untitled1/Utils/app_colors.dart';
 import 'package:untitled1/Utils/helper.dart';
 import 'package:untitled1/apppadding.dart';
 
 import '../../CustomWidgets/cafedetails.dart';
 import '../../CustomWidgets/custom_button_widget.dart';
+import '../Common/instruction_popup.dart';
 import '../Common/menu_iteam_card_noimg.dart';
 import '../food/foodmenu.dart';
 
-class OrderSent extends StatelessWidget {
-  OrderSent({Key? key}) : super(key: key);
+class OrderServed extends StatelessWidget {
+  OrderServed({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,33 +52,34 @@ class OrderSent extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                            child: Row(
-                              children: [
-                                Icon(Icons.refresh,color: successColor,size: 16,),
-                                AppText("Update Status",style: th.bodySmall?.copyWith(
-                                  fontWeight: FontWeight.w600
-                                ),textColor: successColor,
-                                ),
-                              ],
+                        child: Row(
+                          children: [
+                            Icon(Icons.refresh,color: successColor,size: 16,),
+                            AppText("Update Status",style: th.bodySmall?.copyWith(
+                                fontWeight: FontWeight.w600
+                            ),textColor: successColor,
                             ),
-                          ),
+                          ],
+                        ),
+                      ),
 
 
                     ],
                   ),
-                  OrderStatusWithImg("Panjabi Combo",itmsize: "Regular (Serve 1, 17.7 CM)",
-                    itmcount: "2x", itmprice: "₹160",
-                    onpressed: ()=>myFunction(context), uimage: 'assets/container/food.png', itminfo: 'Pepperoni • Extra cheese • Black olives',),
-                  OrderStatus.ordered("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                  OrderStatus.served("Panjabi Combo",itmsize: "Regular (Serve 1, 17.7 CM)",
                     itmcount: "2x", itmprice: "₹160",
                     onpressed: ()=>myFunction(context),),
-                  OrderBook("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                  OrderStatus.served("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                    itmcount: "2x", itmprice: "₹160",
+                    onpressed: ()=>myFunction(context),),
+                  OrderBook.served("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
                     itminfo: "Pepperoni • Extra cheese • Black olives",
                     itmcount: "2x", itmprice: "₹160"
                     ,onpressed: ()=>myFunction(context),),
-                  OrderBook.ordered("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
+                  OrderBook.served("Panjabi Combo", itmsize: "Regular (Serve 1, 17.7 CM)",
                     itminfo: "Pepperoni • Extra cheese • Black olives",
-                    itmcount: "2x", itmprice: "₹160",onpressed: ()=>myFunction(context),),
+                    itmcount: "2x", itmprice: "₹160",
+                    onpressed: ()=>myFunction(context),),
                 ],
               ),
             ),
@@ -180,22 +182,55 @@ class OrderSent extends StatelessWidget {
                       fontColor: appColorWhite,
                       // borderWidth: 5,
                       //padding:8.0,
-                      onTap: null,
+                      // onTap: null,
+                      onTap: () {
+                        showDialog(context: context,
+                            builder: (BuildContext context){
+                              return Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Container(
+                                  height: 320,
+                                  child: OrderBookPopUp(onPressed:
+                                      (){
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: OrderReview(),
+                                      withNavBar: false,
+                                      pageTransitionAnimation:
+                                      PageTransitionAnimation.cupertino,
+                                    );
+                                  },),
+                                ),
+                              );
+                            }
+                        );
+                      },
                       child: Center(
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(Icons.shopping_bag,size: 24,color: Colors.white,),
-                            AppText("₹120000",style: th.bodyLarge?.copyWith(
-                                fontWeight: FontWeight.w700
-                            ),textColor: Colors.white,),
-                            Row(
-                              children: [
-                                AppText("Send Order to Kitchen",style: th.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w500
-                                ),textColor: Colors.white,),
-                                Icon(Icons.keyboard_arrow_right_outlined,size: 12,color: Colors.white,),
-                              ],
+                            Expanded(
+                                flex: 1,
+                                child: Icon(Icons.shopping_bag,size: 24,color: Colors.white,)),
+                            Expanded(
+                              flex: 2,
+                              child: AppText("₹120000",style: th.bodyLarge?.copyWith(
+                                  fontWeight: FontWeight.w700
+                              ),textColor: Colors.white,),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Expanded(
+                                flex: 3,
+                                child: Row(
+                                  children: [
+                                    AppText("Complete Order",style: th.bodyMedium?.copyWith(
+                                        fontWeight: FontWeight.w500
+                                    ),textColor: Colors.white,),
+                                    Icon(Icons.keyboard_arrow_right_outlined,size: 12,color: Colors.white,),
+                                  ],
+                                ),
+                              ),
                             )
                           ],
                         ),

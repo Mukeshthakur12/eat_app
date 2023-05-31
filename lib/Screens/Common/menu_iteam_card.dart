@@ -13,12 +13,24 @@ class MenuIteam extends StatelessWidget {
   final String itminfo;
   final String itmcount;
   final String itmprice;
+  final String ? instruction;
+  final bool isinst;
+  final Color ? instructionclr;
   final VoidCallback ? onpressed;
+  final VoidCallback ? ontooltippress;
 
   const MenuIteam(
       this.uname, { this.uimage,required this.itmsize,
         required this.itminfo,required this.itmcount,
-        required this.itmprice,this.onpressed,
+        required this.itmprice,this.onpressed,this.ontooltippress,
+        this.instruction='Add Instruction',this.instructionclr=successColor,required this.isinst,
+        Key? key
+      }) : super(key: key);
+  const MenuIteam.withInstruction(
+      this.uname, { this.uimage,required this.itmsize,
+        required this.itminfo,required this.itmcount,
+        required this.itmprice,this.onpressed,this.ontooltippress,
+        this.instruction='Instruction',this.instructionclr=inputLabelColor,required this.isinst,
         Key? key
       }) : super(key: key);
 
@@ -77,17 +89,48 @@ class MenuIteam extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: 4,),
-                            GestureDetector(
-                              onTap: onpressed,
-                              child: Row(
-                                children: [
-                                  Icon(Icons.add,size: 14,color: successColor,),
-                                  SizedBox(width: 5,),
-                                  AppText('Add Instruction',style: th.bodySmall?.copyWith
-                                    (fontWeight: FontWeight.w600),
-                                  textColor:successColor ,),
-                                ],
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: onpressed,
+                                  child: Row(
+                                    children: [
+                                      isinst?SizedBox.shrink():Icon(Icons.add,
+                                        size: 14,color: successColor,),
+                                      SizedBox(width: 5,),
+                                      AppText(instruction!,style: th.bodySmall?.copyWith
+                                        (fontWeight: FontWeight.w600),
+                                      textColor:instructionclr,),
+                                      isinst?Icon(Icons.keyboard_arrow_right_outlined,size: 14,
+                                        color: textLabelColor,):SizedBox.shrink(),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: appbtnbg,
+                                    border: Border.all(
+                                      color: border,
+                                    ),
+                                    borderRadius: BorderRadius.circular(6)
+                                  ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        InkWell(
+                                          onTap: onpressed,
+                                            child: Icon(Icons.remove_rounded,size: 12,color: appPrimaryColor,)),
+                                        AppText("1",style: th.bodySmall?.copyWith(
+                                          fontWeight: FontWeight.w600
+                                        ),textColor: appPrimaryColor,),
+                                        Icon(Icons.add,size: 12,color: appPrimaryColor,),
+                                      ],
+                                    ),
+                                  ),
+
+                              ],
                             )
 
                           ],
@@ -95,7 +138,7 @@ class MenuIteam extends StatelessWidget {
                       ),
                   Container(
                     child: GestureDetector(
-                      onTap: onpressed,
+                      onTap: ontooltippress,
                       child: Container(
                         child: Icon(Icons.info_outline,size: 13,),
                       ),

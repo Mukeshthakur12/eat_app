@@ -13,17 +13,27 @@ class OrderStatus extends StatelessWidget {
   final String ? iconlink;
   final Color ? color_b;
   final VoidCallback ? onpressed;
+  final VoidCallback ? ontooltippress;
 
   const OrderStatus(
       this.uname, { required this.itmsize,required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Cooking',
-        this.iconlink='assets/Offer/cooking.svg',this.color_b=status_cooking,
+        this.iconlink='assets/Offer/cooking.svg',
+        this.color_b=status_cooking,this.ontooltippress,
         Key? key
       }) : super(key: key);
   const OrderStatus.ordered(
       this.uname, { required this.itmsize,required this.itmcount,
         required this.itmprice,this.onpressed,this.status='Ordered',
-        this.iconlink='assets/Offer/oredered.svg',this.color_b=successColor,
+        this.iconlink='assets/Offer/oredered.svg',
+        this.color_b=successColor,this.ontooltippress,
+        Key? key
+      }) : super(key: key);
+  const OrderStatus.served(
+      this.uname, { required this.itmsize,required this.itmcount,
+        required this.itmprice,this.onpressed,this.status='Served',
+        this.iconlink='assets/Offer/served.svg',
+        this.color_b=serveddcolor,this.ontooltippress,
         Key? key
       }) : super(key: key);
   @override
@@ -73,7 +83,7 @@ class OrderStatus extends StatelessWidget {
                   ),
                   Container(
                         child: GestureDetector(
-                          onTap: onpressed,
+                          onTap: ontooltippress,
                           child: Container(
                             child: Icon(Icons.info_outline,size: 13,),
                           ),

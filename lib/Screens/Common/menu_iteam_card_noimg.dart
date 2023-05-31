@@ -11,10 +11,11 @@ class MenuIteamNoImage extends StatelessWidget {
   final String itmcount;
   final String itmprice;
   final VoidCallback ? onpressed;
+  final VoidCallback ? ontooltippress;
 
   const MenuIteamNoImage(
       this.uname, { required this.itmsize,required this.itmcount,
-        required this.itmprice,this.onpressed,
+        required this.itmprice,this.onpressed,this.ontooltippress,
         Key? key
       }) : super(key: key);
   @override
@@ -59,17 +60,44 @@ class MenuIteamNoImage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 4,),
-                        GestureDetector(
-                          onTap: onpressed,
-                          child: Row(
-                            children: [
-                              Icon(Icons.add,size: 14,color: successColor,),
-                              SizedBox(width: 5,),
-                              AppText('Add Instruction',style: th.bodySmall?.copyWith
-                                (fontWeight: FontWeight.w600),
-                                textColor:successColor ,),
-                            ],
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: onpressed,
+                              child: Row(
+                                children: [
+                                  Icon(Icons.add,size: 14,color: successColor,),
+                                  SizedBox(width: 5,),
+                                  AppText('Add Instruction',style: th.bodySmall?.copyWith
+                                    (fontWeight: FontWeight.w600),
+                                    textColor:successColor ,),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  color: appbtnbg,
+                                  border: Border.all(
+                                    color: border,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6)
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                      onTap: onpressed,
+                                      child: Icon(Icons.remove_rounded,size: 12,color: appPrimaryColor,)),
+                                  AppText("1",style: th.bodySmall?.copyWith(
+                                      fontWeight: FontWeight.w600
+                                  ),textColor: appPrimaryColor,),
+                                  Icon(Icons.add,size: 12,color: appPrimaryColor,),
+                                ],
+                              ),
+                            ),
+                          ],
                         )
 
                       ],
@@ -77,7 +105,7 @@ class MenuIteamNoImage extends StatelessWidget {
                   ),
                   Container(
                         child: GestureDetector(
-                          onTap: onpressed,
+                          onTap: ontooltippress,
                           child: Container(
                             child: Icon(Icons.info_outline,size: 13,),
                           ),
