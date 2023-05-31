@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../Screens/Common/menupopu.dart';
 import '../Utils/app_colors.dart';
 import '../Utils/helper.dart';
 import 'app_text.dart';
@@ -85,9 +86,7 @@ class foodCard extends StatelessWidget {
                             backgroundColor: appbuttonfill,
                             borderColor: appbuttonBorder,
                             padding: EdgeInsets.all(4.0),
-                            onTap: () {
-                              // Handle button onTap
-                            },
+                            onTap: ()=>myFunction(context),
                             title: 'Add',
                           ),
                         ),
@@ -134,6 +133,20 @@ class foodCard extends StatelessWidget {
           color: Color(0xffF1F1F1),
         ),
       ],
+    );
+  }
+  void myFunction(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.bottomLeft,
+          child: Container(
+            height: 500,
+            child: MenuPopup(type: true,),
+          ),
+        );
+      },
     );
   }
 }

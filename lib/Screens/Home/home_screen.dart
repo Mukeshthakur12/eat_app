@@ -306,6 +306,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                Helper.verticalSpacing(),
+                Helper.verticalSpacing(),
+                Helper.verticalSpacing(),
+                Helper.verticalSpacing(),
+
               ],
             ),
 
@@ -362,10 +367,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),*/
 
             Positioned(
-                left: 0,
-                right: 0,
-                top: 580,
-                bottom: -30,
+              bottom: 0.0,
+              right: 0.0,
+              left: 0,
                 child: MyOrder(),),
 
           ],
